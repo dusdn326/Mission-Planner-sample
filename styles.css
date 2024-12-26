@@ -1,0 +1,77 @@
+/* styles.css */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;  /* 화면 전체 높이 설정 */
+    overflow: hidden; /* 기본 스크롤 숨기기 */
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* 전체 화면 높이를 차지하도록 설정 */
+}
+  
+#map {
+    flex: 3; /* 지도 영역이 화면의 3/5 차지 */
+    height: 60vh; /* 화면 크기에 맞게 높이 설정 */
+}
+
+#bottom-panel {
+    padding: 10px;
+    background: #ffffff;
+    border-top: 2px solid #ddd;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    height: 25.5vh; /* 아래 패널 높이를 설정 */
+    overflow: hidden; /* 화면 넘어가는 내용 숨김 */
+}
+
+#controls {
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px; /* 버튼과 웨이포인트 테이블 간의 간격을 넓힘 */
+    justify-content: flex-start;
+    gap: 8px; /* 버튼들 간 간격을 설정 */
+}
+
+#controls button {
+    padding: 6px 10px; /* 버튼의 높이를 줄임 */
+    font-size: 14px; /* 글자 크기 설정 */
+    width: 150px;
+    text-align: center; /* 글자가 잘 보이게 중앙 정렬 */
+}
+
+#waypointTableWrapper {
+    width: 70%; /* 가로 크기 늘림 */
+    height: 80%; /* 80% 높이 차지 */
+    overflow-y: auto; /* 세로 스크롤 */
+    margin-left: 10px; /* 버튼 부분과의 간격 */
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+#waypointTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+#waypointTable th, #waypointTable td {
+    border: 1px solid #000000;
+    padding: 4px; /* 줄어든 크기 */
+    text-align: center;
+}
+
+#waypointTable input {
+    width: 60px;
+    text-align: center;
+}
