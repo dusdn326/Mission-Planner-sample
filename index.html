@@ -1,52 +1,84 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mission Planner</title>
-  <link rel="stylesheet" href="styles.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="드론 미션 계획 및 관리 도구">
+    <meta name="keywords" content="드론, 미션플래너, 웨이포인트">
+    <title>Mission Planner Pro</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-
-    
-  <div id="container">
-    <!-- 지도 영역 -->
-    <div id="map"></div>
-
-    
-
-    <!-- 아래 패널 -->
-    <div id="bottom-panel">
-        <div id="controls">
-            <button id="loadFile">파일 불러오기</button>
-            <button id="saveFile">파일 저장</button>
-            <!-- <button id="addWaypoint">웨이포인트 추가</button> -->
-            <button id="clearWaypoints">웨이포인트 초기화</button>
+    <div class="header">
+        <div class="logo">
+            <i class="fas fa-drone-alt"></i> Mission Planner Pro
         </div>
-
-      <!-- 웨이포인트 테이블 -->
-      <div id="waypointTableWrapper">
-        <table id="waypointTable">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Latitude</th>
-              <th>Longitude</th>
-              <th>Altitude</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-      </div>
+        <nav>
+            <button class="nav-btn active" onclick="window.location.href='index.html'"><i class="fas fa-home"></i> 홈</button>
+            <button class="nav-btn" onclick="window.location.href='one.html'"><i class="fas fa-info-circle"></i> 소개</button>
+            <button class="nav-btn" onclick="window.location.href='help.html'"><i class="fas fa-question-circle"></i> 도움말</button>
+        </nav>
     </div>
-  </div>
 
-  <!-- 파일 입력 필드 (숨겨짐) -->
-   <input type="file" id="fileInput" style="display: none;" accept=".txt" />
-  
-  <script src="script.js"></script>
+    <div class="container">
+        <div id="map"></div>
+        
+        <div class="status-panel">
+            <div class="status-section">
+                <h3><i class="fas fa-plane"></i> 비행 상태</h3>
+                <div class="status-item">
+                    <span>비행 모드:</span>
+                    <span class="value" id="flightMode">수동</span>
+                </div>
+                <div class="status-item">
+                    <span>배터리:</span>
+                    <span class="value" id="batteryLevel">100%</span>
+                </div>
+                <div class="status-item">
+                    <span>상태:</span>
+                    <span class="value" id="armStatus">DISARMED</span>
+                </div>
+                <div class="status-item">
+                    <span>고도:</span>
+                    <span class="value" id="altitude">0m</span>
+                </div>
+                <div class="status-item">
+                    <span>속도:</span>
+                    <span class="value" id="speed">0m/s</span>
+                </div>
+            </div>
+            
+            <div class="waypoint-section">
+                <h3><i class="fas fa-map-marker-alt"></i> 웨이포인트</h3>
+                <div class="waypoint-controls">
+                    <button id="loadFile" class="btn-primary"><i class="fas fa-folder-open"></i> 불러오기</button>
+                    <button id="saveFile" class="btn-success"><i class="fas fa-save"></i> 저장</button>
+                    <button id="clearWaypoints" class="btn-danger"><i class="fas fa-trash"></i> 초기화</button>
+                    <button id="star" class="btn-start"><i class="fas fa-play"></i> 미션시작</button>
+                </div>
+                <div class="waypoint-table" id="waypointTableWrapper">
+                    <table id="waypointTable">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>위도</th>
+                                <th>경도</th>
+                                <th>고도</th>
+                                <th>동작</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <input type="file" id="fileInput" style="display: none;" accept=".txt,.json">
+    <script src="script.js"></script>
 </body>
 </html>
