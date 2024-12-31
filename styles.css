@@ -77,6 +77,16 @@ body {
   background: var(--primary-color);
 }
 
+.nav-btn.active {
+  background: var(--primary-color);
+  color: white;
+}
+
+.simulation-active {
+  background: #4CAF50 !important;
+  color: white !important;
+}
+
 .status-item {
   display: flex;
   justify-content: space-between;

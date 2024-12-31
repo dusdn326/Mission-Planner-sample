@@ -4,6 +4,8 @@ let waypointId = 1;
 let lines;
 let droneMarker = null;
 let isAnimating = false;
+let isDroneConnected = false;
+let isSimulationMode = false;
 
 // 거리 계산 함수
 function calculateDistance(lat1, lon1, lat2, lon2) {
@@ -111,9 +113,22 @@ function animateAltitude(startAlt, endAlt, duration) {
     });
 }
 
+// 드론 연결 상태 확인 함수 추가
+function checkDroneConnection() {
+    if (!isDroneConnected && !isSimulationMode) {
+        alert('드론이 연결되어 있지 않습니다.');
+        return false;
+    }
+    return true;
+}
+
 // 미션 시작 함수 개선
 async function startMission() {
     try {
+        if (!checkDroneConnection()) {
+            return;
+        }
+
         if (waypoints.length < 2) {
             alert('최소 2개 이상의 웨이포인트가 필요합니다.');
             return;
@@ -339,6 +354,22 @@ function removeWaypoint(id) {
 // 이벤트 리스너
 document.addEventListener('DOMContentLoaded', () => {
     initMap();
+    
+    // 시뮬레이션 모드 버튼 이벤트
+    document.getElementById('simulationBtn').addEventListener('click', () => {
+        isSimulationMode = !isSimulationMode;
+        const btn = document.getElementById('simulationBtn');
+        if (isSimulationMode) {
+            btn.classList.add('active');
+            document.getElementById('armStatus').textContent = 'SIMULATION';
+            alert('시뮬레이션 모드가 활성화되었습니다.');
+        } else {
+            btn.classList.remove('active');
+            document.getElementById('armStatus').textContent = 'DISARMED';
+            alert('시뮬레이션 모드가 비활성화되었습니다.');
+        }
+    });
+
     document.getElementById('star').addEventListener('click', startMission);
 
     // 웨이포인트 초기화
